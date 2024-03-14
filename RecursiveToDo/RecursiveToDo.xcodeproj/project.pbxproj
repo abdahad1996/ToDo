@@ -20,6 +20,10 @@
 		6524C8362BA3495600B7302D /* ToDoManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8352BA3495600B7302D /* ToDoManagerTests.swift */; };
 		6524C83B2BA349FB00B7302D /* Todo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C8372BA349FB00B7302D /* Todo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6524C83C2BA349FB00B7302D /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8382BA349FB00B7302D /* Todo.m */; };
+		6524C8432BA34B2600B7302D /* TodoAdder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C83E2BA34B2600B7302D /* TodoAdder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C8442BA34B2600B7302D /* TodoDeleter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C83F2BA34B2600B7302D /* TodoDeleter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C8452BA34B2600B7302D /* TodoLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C8402BA34B2600B7302D /* TodoLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C8462BA34B2600B7302D /* TodoUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C8412BA34B2600B7302D /* TodoUpdater.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +80,10 @@
 		6524C8352BA3495600B7302D /* ToDoManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoManagerTests.swift; sourceTree = "<group>"; };
 		6524C8372BA349FB00B7302D /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
 		6524C8382BA349FB00B7302D /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
+		6524C83E2BA34B2600B7302D /* TodoAdder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoAdder.h; sourceTree = "<group>"; };
+		6524C83F2BA34B2600B7302D /* TodoDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoDeleter.h; sourceTree = "<group>"; };
+		6524C8402BA34B2600B7302D /* TodoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoLoader.h; sourceTree = "<group>"; };
+		6524C8412BA34B2600B7302D /* TodoUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoUpdater.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +150,7 @@
 		6524C8192BA347ED00B7302D /* TodoShared */ = {
 			isa = PBXGroup;
 			children = (
-				6524C83A2BA349FB00B7302D /* Model */,
+				6524C8492BA34B4100B7302D /* Domain */,
 				6524C81A2BA347ED00B7302D /* TodoShared.h */,
 			);
 			path = TodoShared;
@@ -166,6 +174,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6524C8422BA34B2600B7302D /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				6524C83E2BA34B2600B7302D /* TodoAdder.h */,
+				6524C83F2BA34B2600B7302D /* TodoDeleter.h */,
+				6524C8402BA34B2600B7302D /* TodoLoader.h */,
+				6524C8412BA34B2600B7302D /* TodoUpdater.h */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		6524C8492BA34B4100B7302D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6524C8422BA34B2600B7302D /* UseCases */,
+				6524C83A2BA349FB00B7302D /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -174,7 +202,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6524C83B2BA349FB00B7302D /* Todo.h in Headers */,
+				6524C8432BA34B2600B7302D /* TodoAdder.h in Headers */,
+				6524C8462BA34B2600B7302D /* TodoUpdater.h in Headers */,
+				6524C8442BA34B2600B7302D /* TodoDeleter.h in Headers */,
 				6524C8282BA347ED00B7302D /* TodoShared.h in Headers */,
+				6524C8452BA34B2600B7302D /* TodoLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
