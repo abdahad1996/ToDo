@@ -13,7 +13,6 @@
 // Declare the protocol
 @protocol TodoLoader <NSObject>
 
-// Declare a method to create a todo node
-- (void)loadNode:(Todo *)node completion:(void (^)(NSMutableArray<Todo *> *))completion;
-
+// Declare a method to load a todo node
+- (void)loadWithCompletion:(void (^)(NSArray<Todo *> *todos))completion;
 @end

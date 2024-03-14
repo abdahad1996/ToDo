@@ -19,6 +19,9 @@
 //implementations
 #import <TodoShared/TodoManager.h>
 #import <TodoShared/TodoManager+TodoCreator.h>
+#import <TodoShared/TodoManager+TodoLoader.h>
+
+ 
 
 //! Project version number for TodoShared.
 FOUNDATION_EXPORT double TodoSharedVersionNumber;
