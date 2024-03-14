@@ -20,6 +20,7 @@
 - (void)iterateOverEachParentAndCheckStatusUntilRootForId:(NSString *)parentId;
 - (void)toggleStatusOfParent:(Todo *)parent;
 - (NSArray<Todo *> *)flattenChildren:(NSArray<Todo *> *)children;
+- (void)deleteNodeAndChildren:(Todo *)node fromArray:(NSMutableArray<Todo *> *)todos;
 @end
 
 

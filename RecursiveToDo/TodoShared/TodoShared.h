@@ -20,6 +20,8 @@
 #import <TodoShared/TodoManager.h>
 #import <TodoShared/TodoManager+TodoCreator.h>
 #import <TodoShared/TodoManager+TodoLoader.h>
+#import <TodoShared/TodoManager+TodoDeleter.h>
+
 
  
 

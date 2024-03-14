@@ -13,7 +13,7 @@
 // Declare the protocol
 @protocol TodoDeleter <NSObject>
 
-// Declare a method to create a todo node
+// Declare a method to delete a todo node
 - (void)deleteNode:(Todo *)node completion:(void (^)(NSArray<Todo *> *))completion;
 
 @end

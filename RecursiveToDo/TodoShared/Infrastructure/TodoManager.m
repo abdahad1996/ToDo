@@ -90,4 +90,14 @@
     return [flattenedChildren copy];
 }
 
+- (void)deleteNodeAndChildren:(Todo *)node fromArray:(NSMutableArray<Todo *> *)todos {
+    // Remove the given node from the array
+    [todos removeObject:node];
+    
+    // Recursively delete all children of the given node
+    for (Todo *child in node.children) {
+        [self deleteNodeAndChildren:child fromArray:todos];
+    }
+}
+
 @end

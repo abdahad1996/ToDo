@@ -32,6 +32,9 @@
 		6524C8582BA34E5400B7302D /* TodoManager+TodoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */; };
 		6524C85A2BA34E9E00B7302D /* ToDoManagerTests+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */; };
 		6524C85C2BA34F0900B7302D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C85B2BA34F0900B7302D /* Helpers.swift */; };
+		6524C85E2BA3527300B7302D /* TodoManager+TodoDeleter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C85D2BA3527300B7302D /* TodoManager+TodoDeleter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C8602BA352B000B7302D /* TodoManager+TodoDeleter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C85F2BA352B000B7302D /* TodoManager+TodoDeleter.m */; };
+		6524C8622BA35A0500B7302D /* ToDoManagerTests+Deleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8612BA35A0500B7302D /* ToDoManagerTests+Deleter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,9 @@
 		6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TodoManager+TodoLoader.m"; sourceTree = "<group>"; };
 		6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoManagerTests+Loader.swift"; sourceTree = "<group>"; };
 		6524C85B2BA34F0900B7302D /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		6524C85D2BA3527300B7302D /* TodoManager+TodoDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TodoManager+TodoDeleter.h"; sourceTree = "<group>"; };
+		6524C85F2BA352B000B7302D /* TodoManager+TodoDeleter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TodoManager+TodoDeleter.m"; sourceTree = "<group>"; };
+		6524C8612BA35A0500B7302D /* ToDoManagerTests+Deleter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoManagerTests+Deleter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,7 @@
 			children = (
 				6524C8352BA3495600B7302D /* ToDoManagerTests+Create.swift */,
 				6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */,
+				6524C8612BA35A0500B7302D /* ToDoManagerTests+Deleter.swift */,
 				6524C8342BA3495500B7302D /* TodoSharedTests-Bridging-Header.h */,
 				6524C85B2BA34F0900B7302D /* Helpers.swift */,
 			);
@@ -216,6 +223,8 @@
 		6524C84A2BA34BC500B7302D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				6524C85D2BA3527300B7302D /* TodoManager+TodoDeleter.h */,
+				6524C85F2BA352B000B7302D /* TodoManager+TodoDeleter.m */,
 				6524C8552BA34E5400B7302D /* TodoManager+TodoLoader.h */,
 				6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */,
 				6524C84F2BA34C4A00B7302D /* TodoManager+TodoCreator.h */,
@@ -235,6 +244,7 @@
 			files = (
 				6524C83B2BA349FB00B7302D /* Todo.h in Headers */,
 				6524C8512BA34C4A00B7302D /* TodoManager+TodoCreator.h in Headers */,
+				6524C85E2BA3527300B7302D /* TodoManager+TodoDeleter.h in Headers */,
 				6524C8432BA34B2600B7302D /* TodoAdder.h in Headers */,
 				6524C8462BA34B2600B7302D /* TodoUpdater.h in Headers */,
 				6524C8442BA34B2600B7302D /* TodoDeleter.h in Headers */,
@@ -391,6 +401,7 @@
 			files = (
 				6524C8582BA34E5400B7302D /* TodoManager+TodoLoader.m in Sources */,
 				6524C83C2BA349FB00B7302D /* Todo.m in Sources */,
+				6524C8602BA352B000B7302D /* TodoManager+TodoDeleter.m in Sources */,
 				6524C8522BA34C4A00B7302D /* TodoManager+TodoCreator.m in Sources */,
 				6524C84E2BA34BEB00B7302D /* TodoManager.m in Sources */,
 			);
@@ -401,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6524C85A2BA34E9E00B7302D /* ToDoManagerTests+Loader.swift in Sources */,
+				6524C8622BA35A0500B7302D /* ToDoManagerTests+Deleter.swift in Sources */,
 				6524C85C2BA34F0900B7302D /* Helpers.swift in Sources */,
 				6524C8362BA3495600B7302D /* ToDoManagerTests+Create.swift in Sources */,
 			);
