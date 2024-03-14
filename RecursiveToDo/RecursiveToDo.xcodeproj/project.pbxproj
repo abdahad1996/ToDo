@@ -14,10 +14,10 @@
 		6524C8092BA3478D00B7302D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6524C8082BA3478D00B7302D /* Assets.xcassets */; };
 		6524C80C2BA3478D00B7302D /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 6524C80B2BA3478D00B7302D /* Base */; };
 		6524C8202BA347ED00B7302D /* TodoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6524C8182BA347ED00B7302D /* TodoShared.framework */; };
-		6524C8272BA347ED00B7302D /* TodoSharedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8262BA347ED00B7302D /* TodoSharedTests.m */; };
 		6524C8282BA347ED00B7302D /* TodoShared.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C81A2BA347ED00B7302D /* TodoShared.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6524C82B2BA347ED00B7302D /* TodoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6524C8182BA347ED00B7302D /* TodoShared.framework */; };
 		6524C82C2BA347ED00B7302D /* TodoShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6524C8182BA347ED00B7302D /* TodoShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6524C8362BA3495600B7302D /* ToDoManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8352BA3495600B7302D /* ToDoManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +70,8 @@
 		6524C8182BA347ED00B7302D /* TodoShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TodoShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6524C81A2BA347ED00B7302D /* TodoShared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoShared.h; sourceTree = "<group>"; };
 		6524C81F2BA347ED00B7302D /* TodoSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6524C8262BA347ED00B7302D /* TodoSharedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoSharedTests.m; sourceTree = "<group>"; };
+		6524C8342BA3495500B7302D /* TodoSharedTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TodoSharedTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		6524C8352BA3495600B7302D /* ToDoManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +146,8 @@
 		6524C8252BA347ED00B7302D /* TodoSharedTests */ = {
 			isa = PBXGroup;
 			children = (
-				6524C8262BA347ED00B7302D /* TodoSharedTests.m */,
+				6524C8352BA3495600B7302D /* ToDoManagerTests.swift */,
+				6524C8342BA3495500B7302D /* TodoSharedTests-Bridging-Header.h */,
 			);
 			path = TodoSharedTests;
 			sourceTree = "<group>";
@@ -238,6 +240,7 @@
 					};
 					6524C81E2BA347ED00B7302D = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 						TestTargetID = 6524C7FB2BA3478900B7302D;
 					};
 				};
@@ -311,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6524C8272BA347ED00B7302D /* TodoSharedTests.m in Sources */,
+				6524C8362BA3495600B7302D /* ToDoManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ADTR2923N7;
@@ -606,6 +610,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = abdul.TodoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TodoSharedTests/TodoSharedTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecursiveToDo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecursiveToDo";
 			};
@@ -615,6 +622,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ADTR2923N7;
@@ -623,6 +631,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = abdul.TodoSharedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "TodoSharedTests/TodoSharedTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RecursiveToDo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RecursiveToDo";
 			};
