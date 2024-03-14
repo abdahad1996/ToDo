@@ -7,6 +7,9 @@
 
 #import <Foundation/Foundation.h>
 
+//model
+#import <TodoShared/todo.h>
+
 //! Project version number for TodoShared.
 FOUNDATION_EXPORT double TodoSharedVersionNumber;
 

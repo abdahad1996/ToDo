@@ -18,6 +18,8 @@
 		6524C82B2BA347ED00B7302D /* TodoShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6524C8182BA347ED00B7302D /* TodoShared.framework */; };
 		6524C82C2BA347ED00B7302D /* TodoShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6524C8182BA347ED00B7302D /* TodoShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6524C8362BA3495600B7302D /* ToDoManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8352BA3495600B7302D /* ToDoManagerTests.swift */; };
+		6524C83B2BA349FB00B7302D /* Todo.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C8372BA349FB00B7302D /* Todo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C83C2BA349FB00B7302D /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8382BA349FB00B7302D /* Todo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		6524C81F2BA347ED00B7302D /* TodoSharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoSharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6524C8342BA3495500B7302D /* TodoSharedTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TodoSharedTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6524C8352BA3495600B7302D /* ToDoManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoManagerTests.swift; sourceTree = "<group>"; };
+		6524C8372BA349FB00B7302D /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
+		6524C8382BA349FB00B7302D /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		6524C8192BA347ED00B7302D /* TodoShared */ = {
 			isa = PBXGroup;
 			children = (
+				6524C83A2BA349FB00B7302D /* Model */,
 				6524C81A2BA347ED00B7302D /* TodoShared.h */,
 			);
 			path = TodoShared;
@@ -152,6 +157,15 @@
 			path = TodoSharedTests;
 			sourceTree = "<group>";
 		};
+		6524C83A2BA349FB00B7302D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6524C8372BA349FB00B7302D /* Todo.h */,
+				6524C8382BA349FB00B7302D /* Todo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -159,6 +173,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6524C83B2BA349FB00B7302D /* Todo.h in Headers */,
 				6524C8282BA347ED00B7302D /* TodoShared.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6524C83C2BA349FB00B7302D /* Todo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,7 +616,6 @@
 		6524C8322BA347ED00B7302D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -621,7 +636,6 @@
 		6524C8332BA347ED00B7302D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
