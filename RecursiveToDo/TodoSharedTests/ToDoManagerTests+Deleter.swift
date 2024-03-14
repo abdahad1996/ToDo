@@ -15,10 +15,8 @@ extension ToDoManager {
             // Arrange
             let todoManager = makeSUT()
     
-            let task1 = makeRootTodo("Task 1")
-            let task2 = makeRootTodo("Task 2")
-            let task3 = makeRootTodo("Task 3")
-    
+            let (task1, task2, task3) = createRootTodos()
+
             
             [task1,task2,task3].forEach { todo in
                 todoManager.createNode(todo, completion: {_ in })
@@ -90,15 +88,6 @@ extension ToDoManager {
         }
     //
     
-    //MARK: Helpers
-    
-    func createHeirchialTodos() -> (Todo, Todo, Todo, Todo) {
-        let todo1 = makeRootTodo("Task 1")
-        let childTodo1 = makeChildTodo("Task 1.1", parent: todo1)
-        let subChildTodo1 = makeChildTodo("Task 1.1.1", parent: childTodo1)
-        let subSubChildTodo1 = makeChildTodo("Task 1.1.1.1", parent: subChildTodo1)
-        return (todo1, childTodo1, subChildTodo1, subSubChildTodo1)
-    }
    
 
 }
