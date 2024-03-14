@@ -10,11 +10,15 @@
 //model
 #import <TodoShared/todo.h>
 
-//protocols
+//Usecases
 #import <TodoShared/TodoLoader.h>
 #import <TodoShared/TodoAdder.h>
 #import <TodoShared/TodoDeleter.h>
 #import <TodoShared/TodoUpdater.h>
+
+//implementations
+#import <TodoShared/TodoManager.h>
+#import <TodoShared/TodoManager+TodoCreator.h>
 
 //! Project version number for TodoShared.
 FOUNDATION_EXPORT double TodoSharedVersionNumber;
