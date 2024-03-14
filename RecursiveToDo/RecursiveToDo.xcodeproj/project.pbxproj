@@ -28,6 +28,10 @@
 		6524C84E2BA34BEB00B7302D /* TodoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C84D2BA34BEB00B7302D /* TodoManager.m */; };
 		6524C8512BA34C4A00B7302D /* TodoManager+TodoCreator.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C84F2BA34C4A00B7302D /* TodoManager+TodoCreator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6524C8522BA34C4A00B7302D /* TodoManager+TodoCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8502BA34C4A00B7302D /* TodoManager+TodoCreator.m */; };
+		6524C8572BA34E5400B7302D /* TodoManager+TodoLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 6524C8552BA34E5400B7302D /* TodoManager+TodoLoader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6524C8582BA34E5400B7302D /* TodoManager+TodoLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */; };
+		6524C85A2BA34E9E00B7302D /* ToDoManagerTests+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */; };
+		6524C85C2BA34F0900B7302D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6524C85B2BA34F0900B7302D /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +96,10 @@
 		6524C84D2BA34BEB00B7302D /* TodoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoManager.m; sourceTree = "<group>"; };
 		6524C84F2BA34C4A00B7302D /* TodoManager+TodoCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TodoManager+TodoCreator.h"; sourceTree = "<group>"; };
 		6524C8502BA34C4A00B7302D /* TodoManager+TodoCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TodoManager+TodoCreator.m"; sourceTree = "<group>"; };
+		6524C8552BA34E5400B7302D /* TodoManager+TodoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TodoManager+TodoLoader.h"; sourceTree = "<group>"; };
+		6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TodoManager+TodoLoader.m"; sourceTree = "<group>"; };
+		6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ToDoManagerTests+Loader.swift"; sourceTree = "<group>"; };
+		6524C85B2BA34F0900B7302D /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				6524C8352BA3495600B7302D /* ToDoManagerTests+Create.swift */,
+				6524C8592BA34E9E00B7302D /* ToDoManagerTests+Loader.swift */,
 				6524C8342BA3495500B7302D /* TodoSharedTests-Bridging-Header.h */,
+				6524C85B2BA34F0900B7302D /* Helpers.swift */,
 			);
 			path = TodoSharedTests;
 			sourceTree = "<group>";
@@ -206,6 +216,8 @@
 		6524C84A2BA34BC500B7302D /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				6524C8552BA34E5400B7302D /* TodoManager+TodoLoader.h */,
+				6524C8562BA34E5400B7302D /* TodoManager+TodoLoader.m */,
 				6524C84F2BA34C4A00B7302D /* TodoManager+TodoCreator.h */,
 				6524C8502BA34C4A00B7302D /* TodoManager+TodoCreator.m */,
 				6524C84D2BA34BEB00B7302D /* TodoManager.m */,
@@ -228,6 +240,7 @@
 				6524C8442BA34B2600B7302D /* TodoDeleter.h in Headers */,
 				6524C84C2BA34BDE00B7302D /* TodoManager.h in Headers */,
 				6524C8282BA347ED00B7302D /* TodoShared.h in Headers */,
+				6524C8572BA34E5400B7302D /* TodoManager+TodoLoader.h in Headers */,
 				6524C8452BA34B2600B7302D /* TodoLoader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6524C8582BA34E5400B7302D /* TodoManager+TodoLoader.m in Sources */,
 				6524C83C2BA349FB00B7302D /* Todo.m in Sources */,
 				6524C8522BA34C4A00B7302D /* TodoManager+TodoCreator.m in Sources */,
 				6524C84E2BA34BEB00B7302D /* TodoManager.m in Sources */,
@@ -386,6 +400,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6524C85A2BA34E9E00B7302D /* ToDoManagerTests+Loader.swift in Sources */,
+				6524C85C2BA34F0900B7302D /* Helpers.swift in Sources */,
 				6524C8362BA3495600B7302D /* ToDoManagerTests+Create.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

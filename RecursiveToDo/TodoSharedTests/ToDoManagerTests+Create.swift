@@ -45,12 +45,12 @@ class ToDoManager: XCTestCase {
                 XCTAssertEqual(todos, [rootTodo])
     
                 XCTAssertEqual(todos, [rootTodo])
-                XCTAssertEqual(self.getToDoChild(todo: todos).titleLabel(), "Child 1.1 - child task" )
-                XCTAssertEqual(self.getToDoChild(todo: todos).parentId, rootTodo.id )
-                XCTAssertEqual(self.getToDoChild(todo: todos).id, childTodo.id )
-                XCTAssertEqual(self.getToDoChild(todo: todos).isCompleted, childTodo.isCompleted )
+                XCTAssertEqual(getToDoChild(todo: todos).titleLabel(), "Child 1.1 - child task" )
+                XCTAssertEqual(getToDoChild(todo: todos).parentId, rootTodo.id )
+                XCTAssertEqual(getToDoChild(todo: todos).id, childTodo.id )
+                XCTAssertEqual(getToDoChild(todo: todos).isCompleted, childTodo.isCompleted )
 
-                XCTAssertEqual(self.getToDoChild(todo: todos).level, 1 )
+                XCTAssertEqual(getToDoChild(todo: todos).level, 1 )
 
     
                 XCTAssertEqual(todoManager.flattenTodos().count, 2)
@@ -79,12 +79,12 @@ class ToDoManager: XCTestCase {
                 XCTAssertEqual(todos, [rootTodo])
                 XCTAssertEqual(todos?[0].children, [childTodo])
     
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).name, subchildTodo.name)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).id, subchildTodo.id)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).parentId, childTodo.id)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).level, 2)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).isCompleted,false)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).titleLabel(), "Child 1.1.1 - repeat" )
+                XCTAssertEqual(getToDoSubChild(todo: todos).name, subchildTodo.name)
+                XCTAssertEqual(getToDoSubChild(todo: todos).id, subchildTodo.id)
+                XCTAssertEqual(getToDoSubChild(todo: todos).parentId, childTodo.id)
+                XCTAssertEqual(getToDoSubChild(todo: todos).level, 2)
+                XCTAssertEqual(getToDoSubChild(todo: todos).isCompleted,false)
+                XCTAssertEqual(getToDoSubChild(todo: todos).titleLabel(), "Child 1.1.1 - repeat" )
     
                 XCTAssertEqual(todoManager.flattenTodos().count, 3)
             }
@@ -111,9 +111,9 @@ class ToDoManager: XCTestCase {
             // Act
             todoManager.createNode(subchildTodo) { todos in
                 // Assert
-                XCTAssertEqual(self.getTodoParent(todo: todos).isCompleted,false)
-                XCTAssertEqual(self.getToDoChild(todo: todos).isCompleted,false)
-                XCTAssertEqual(self.getToDoSubChild(todo: todos).isCompleted,false)
+                XCTAssertEqual(getTodoParent(todo: todos).isCompleted,false)
+                XCTAssertEqual(getToDoChild(todo: todos).isCompleted,false)
+                XCTAssertEqual(getToDoSubChild(todo: todos).isCompleted,false)
                
                 
             }
@@ -121,34 +121,13 @@ class ToDoManager: XCTestCase {
     
     
     //MARK: HELPERS
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> TodoManager {
+     func makeSUT(file: StaticString = #file, line: UInt = #line) -> TodoManager {
         let todoManager = TodoManager()
         trackMemoryLeaks(todoManager, file: file, line: line)
         return todoManager
     }
     
-    private func makeRootTodo(_ name:String,taskNumber:Int = 1)->Todo{
-        return Todo.createRootTodo(withName: "abdul", rootTaskNumber: taskNumber)
-       }
-    
-    private func makeChildTodo(_ name:String,parent todo:Todo)->Todo{
-            let taskCount = todo.children.count + 1
-           return Todo.createChildTodo(withName: name, parent: todo, childTaskNumber: 1)
-       }
-    
-    fileprivate func getTodoParent(todo:[Todo]?,for parent:Int = 0) -> Todo {
-        return todo![parent]
-    }
-    fileprivate func getToDoChild(todo:[Todo]?,for parent:Int = 0,with child:Int = 0) -> Todo {
-        return todo![parent].children[child] as! Todo
-    }
-    
-    fileprivate func getToDoSubChild(todo:[Todo]?,for parent:Int = 0,with child:Int = 0,with subChild:Int = 0) -> Todo {
-        let child = todo![parent].children[child] as! Todo
-       return child.children[subChild] as! Todo
-        
-    }
-    
+   
     
     
 }
