@@ -94,4 +94,11 @@
     }
 }
 
+- (void)dealloc {
+    // Release todos array
+    _todos = nil;
+    // Call super dealloc if subclassing NSObject directly
+    [super dealloc];
+}
+
 @end
