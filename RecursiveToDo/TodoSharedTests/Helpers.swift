@@ -24,8 +24,8 @@ public extension XCTestCase {
 }
 
  func makeChildTodo(_ name:String,parent todo:Todo)->Todo{
-    let taskCount = todo.children.count + 1
-    return Todo.createChildTodo(withName: name, parent: todo, childTaskNumber: taskCount+1)
+    let taskCount = todo.children.count+1
+    return Todo.createChildTodo(withName: name, parent: todo, childTaskNumber: taskCount)
 }
 
  func getTodoParent(todo:[Todo]?,for parent:Int = 0) -> Todo {
@@ -39,6 +39,12 @@ public extension XCTestCase {
     let child = todo![parent].children[child] as! Todo
     return child.children[subChild] as! Todo
     
+}
+func getToDoSubSubChild(todo:[Todo]?,for parent:Int = 0,with child:Int = 0,with subChild:Int = 0,with subSubChild:Int = 0) -> Todo {
+   let child = todo![parent].children[child] as! Todo
+   let subChild = child.children[subChild] as! Todo
+    return subChild.children[subSubChild] as! Todo
+   
 }
 
 func createHeirchialTodos() -> (Todo, Todo, Todo, Todo) {

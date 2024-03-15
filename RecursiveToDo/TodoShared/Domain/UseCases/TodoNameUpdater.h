@@ -10,14 +10,6 @@
 // Forward declaration of the Todo class
 @class Todo;
 
-// Declare the protocol for updating todo status
-@protocol TodoStatusUpdater <NSObject>
-
-// Declare a method to update todo status
-- (void)updateNode:(Todo *)node completion:(void (^)(NSArray<Todo *> *))completion;
-
-@end
-
 // Declare the protocol for updating todo name
 @protocol TodoNameUpdater <NSObject>
 

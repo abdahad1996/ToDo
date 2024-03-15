@@ -49,21 +49,21 @@
     if (!currentParent) {
         return;
     }
-    [self toggleStatusOfParent:currentParent];
+    [self toggleStatusOfAnyParentAndAllChildren:currentParent];
     while (currentParent.parentId) {
         currentParent = [self findNearestParentForId:currentParent.parentId];
-        [self toggleStatusOfParent:currentParent];
+        [self toggleStatusOfAnyParentAndAllChildren:currentParent];
     }
 }
 
-- (void)toggleStatusOfParent:(Todo *)parent {
+- (void)toggleStatusOfAnyParentAndAllChildren:(Todo *)parent {
     NSMutableArray<Todo *> *flattenedTodos = [[NSMutableArray alloc] init];
     [flattenedTodos addObjectsFromArray:[self flattenChildren:parent.children]];
     
     BOOL allSubtasksCompleted = YES;
        
        // Check if all subtasks are completed
-       for (Todo *child in parent.children) {
+       for (Todo *child in flattenedTodos) {
            if (!child.isCompleted) {
                allSubtasksCompleted = NO;
                break;
@@ -73,12 +73,6 @@
        // Update the parent's isCompleted property based on subtasks' completion status
        parent.isCompleted = allSubtasksCompleted;
     
-//    BOOL allSubtasksCompleted = [[self flattenChildren:parent.children] valueForKeyPath:@"@sum.isCompleted"] == parent.children.count;
-//    if (allSubtasksCompleted) {
-//        parent.isCompleted = YES;
-//    } else {
-//        parent.isCompleted = NO;
-//    }
 }
 
 - (NSArray<Todo *> *)flattenChildren:(NSArray<Todo *> *)children {

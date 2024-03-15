@@ -14,13 +14,17 @@
 #import <TodoShared/TodoLoader.h>
 #import <TodoShared/TodoAdder.h>
 #import <TodoShared/TodoDeleter.h>
-#import <TodoShared/TodoUpdater.h>
+#import <TodoShared/TodoNameUpdater.h>
+#import <TodoShared/TodoStatusUpdater.h>
 
 //implementations
 #import <TodoShared/TodoManager.h>
 #import <TodoShared/TodoManager+TodoCreator.h>
 #import <TodoShared/TodoManager+TodoLoader.h>
 #import <TodoShared/TodoManager+TodoDeleter.h>
+#import <TodoShared/TodoManager+TodoNameUpdater.h>
+#import <TodoShared/TodoManager+TodoStatusUpdater.h>
+
 
 
  
