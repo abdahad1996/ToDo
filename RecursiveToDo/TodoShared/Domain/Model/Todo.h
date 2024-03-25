@@ -9,7 +9,7 @@
 @class Todo;
 
 
-@interface Todo : NSObject
+@interface Todo : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSMutableArray<Todo *> *children;

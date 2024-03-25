@@ -77,4 +77,19 @@
                             taskNumber:taskNumber];
 }
 
+- (nonnull id)copyWithZone:(nullable NSZone *)zone { 
+       Todo *copy = [[[self class] allocWithZone:zone] init];
+       if (copy) {
+           copy.name = [self.name copy];
+           copy.children = [self.children mutableCopy];
+           copy.level = self.level;
+           copy.id = self.id;
+           copy.parentId = [self.parentId copy];
+           copy.isCompleted = self.isCompleted;
+           copy.taskNumber = [self.taskNumber copy];
+       }
+       return copy;
+   }
+
+
 @end
