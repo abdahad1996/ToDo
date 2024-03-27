@@ -14,6 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var navigaitonController = UINavigationController()
     let todoManager = TodoManager()
+    let localLoader:LocalTodoLoader = {
+        let localURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("todo.store")
+        let localStore = CodeableTodoStore(storeURL: localURL)
+        let localLoader = LocalTodoLoader(store: localStore)
+        return localLoader
+        
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -24,8 +31,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         let mainTodoListViewController = MainTodoListViewController()
-       
-        let viewModel = TodoListViewModel(todoManager:todoManager)
+        
+        let todoCacheDecorator = TodoCacheDecorator(decoratee: todoManager, cache: localLoader)
+        let mainQueueDecorator = MainQueueDispatchDecorator(decoratee: todoCacheDecorator)
+        
+        
+        
+        let primaryLoader = TodoCacheDecoratorLoader(decoratee: todoManager, cache:localLoader)
+        let fallBackLoader = localLoader
+        let syncLoader = TodoLoaderSyncDecorator(decoratee: fallBackLoader, todoAdder: todoManager)
+        
+        let todoLoader = MainQueueDispatchDecoratorTodoLoader(decoratee:         TodoLoaderWithFallbackComposite(primary:primaryLoader, fallback: syncLoader))
+        
+        let viewModel = TodoListViewModel(todoManager:mainQueueDecorator, loader:todoLoader)
         mainTodoListViewController.viewModel = viewModel
         
         mainTodoListViewController.addTask = { [weak self] in
@@ -56,7 +74,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func makeAddTaskVC(completion:@escaping () -> Void){
-        let viewModel = AddTodoViewModel(todoManager: todoManager)
+        let todoCacheDecorator = TodoCacheDecorator(decoratee: todoManager, cache: localLoader)
+        let mainQueueDecorator = MainQueueDispatchDecorator(decoratee: todoCacheDecorator)
+        
+        let todoCacheDecoratorLoader = TodoCacheDecoratorLoader(decoratee: todoManager, cache:localLoader)
+
+
+        let viewModel = AddTodoViewModel(todoManager: mainQueueDecorator, todoLoader: MainQueueDispatchDecoratorTodoLoader(decoratee: todoCacheDecoratorLoader))
         
         let AddToDoView = AddTodoView(viewModel: viewModel,onCancelTapped: { [weak self] in
             self?.navigaitonController.navigationBar.isHidden = false
@@ -69,15 +93,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             completion()
         }
         
-        
-        
         let AddToDoViewController = UIHostingController(rootView: AddToDoView)
         self.navigaitonController.pushViewController(AddToDoViewController, animated: true)
         self.navigaitonController.navigationBar.isHidden = true
     }
     
     func makeEditTaskVC(todo:Todo,completion:@escaping () -> Void){
-        let viewModel = EditTodoViewModel(todoUpdater: todoManager, todo: todo)
+        let todoCacheDecorator = TodoCacheDecorator(decoratee: todoManager, cache: localLoader)
+        let mainQueueDecorator = MainQueueDispatchDecorator(decoratee: todoCacheDecorator)
+        
+        let viewModel = EditTodoViewModel(todoUpdater: todoCacheDecorator, todo: todo)
         let EditTodoView = EditTodoView(viewModel: viewModel,onCancelTapped: { [weak self] in
             self?.navigaitonController.navigationBar.isHidden = false
             self?.navigaitonController.popViewController(animated: true)
@@ -88,9 +113,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self?.navigaitonController.popViewController(animated: false)
             completion()
         }
-        
-        
-        
+      
         let AddToDoViewController = UIHostingController(rootView: EditTodoView)
         self.navigaitonController.pushViewController(AddToDoViewController, animated: true)
         self.navigaitonController.navigationBar.isHidden = true
@@ -98,7 +121,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     //create subtask
     func makeSubTaskVC(todo:Todo,completion:@escaping ([Todo]) -> Void){
-        let viewModel = AddSubTodoViewModel(todoManager: todoManager, todo: todo)
+        let todoCacheDecorator = TodoCacheDecorator(decoratee: todoManager, cache: localLoader)
+        let mainQueueDecorator = MainQueueDispatchDecorator(decoratee: todoCacheDecorator)
+        
+        let todoCacheDecoratorLoader = TodoCacheDecoratorLoader(decoratee: todoManager, cache:localLoader)
+
+
+        let viewModel = AddSubTodoViewModel(todoManager: mainQueueDecorator, todoLoader: MainQueueDispatchDecoratorTodoLoader(decoratee: todoCacheDecoratorLoader),todo:todo)
+        
         
         let AddToDoView = AddSubTodoView(viewModel: viewModel,onCancelTapped: { [weak self] in
             self?.navigaitonController.navigationBar.isHidden = false

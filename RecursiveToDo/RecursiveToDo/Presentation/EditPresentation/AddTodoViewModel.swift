@@ -9,9 +9,10 @@ import SwiftUI
 import TodoShared
 
 class AddTodoViewModel:ObservableObject {
-    public typealias TodoAdderFacade = (TodoAdder & TodoLoader)
+     
 
-    let todoManager:TodoAdderFacade
+    let todoManager:TodoAdder
+    let todoLoader:TodoLoader
     var onSaveTapped: (([Todo]) -> Void)?
 
     @Published var isEnabled = false
@@ -32,14 +33,16 @@ class AddTodoViewModel:ObservableObject {
         "Save"
     }
     
-    init(todoManager: TodoAdderFacade) {
-        self.todoManager = todoManager
-        
-    }
+    init(todoManager: TodoAdder, todoLoader:TodoLoader) {
+       self.todoManager = todoManager
+       self.todoLoader = todoLoader
+       
+   }
+   
     
    
     func save(){
-        self.todoManager.load { [weak self] todos in
+        self.todoLoader.load { [weak self] todos in
             guard let todos = todos else {return}
                 //create parent
                 let taskCount = todos.count + 1

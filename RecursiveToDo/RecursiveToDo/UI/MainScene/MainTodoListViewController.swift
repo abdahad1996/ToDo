@@ -249,9 +249,12 @@ extension MainTodoListViewController: UITableViewDropDelegate {
 //MARK: Helper Functions
 extension MainTodoListViewController {
     fileprivate func updateNameRow(with updatedTodo: Todo) {
+        // Reload or insert rows based on changeset
+        tableView.beginUpdates()
         guard let index = self.todos.firstIndex(of: updatedTodo) else{return}
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
         
     }
     

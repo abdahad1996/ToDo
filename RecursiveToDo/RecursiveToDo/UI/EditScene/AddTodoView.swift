@@ -50,7 +50,7 @@ struct AddTodoView: View {
 
 
 #Preview {
-    AddTodoView(viewModel: AddTodoViewModel(todoManager: TodoAdderPreviewStub()))
+    AddTodoView(viewModel: AddTodoViewModel(todoManager: TodoAdderPreviewStub(), todoLoader: TodoAdderPreviewStub()))
 }
 
 fileprivate final class TodoAdderPreviewStub:NSObject, TodoAdder,TodoLoader {

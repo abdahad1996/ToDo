@@ -50,7 +50,7 @@ struct AddSubTodoView: View {
 
 
 #Preview {
-    AddSubTodoView(viewModel: AddSubTodoViewModel(todoManager: TodoAdderPreviewStub(), todo: Todo.createRootTodo(withName: "test", rootTaskNumber: 1)))
+    AddSubTodoView(viewModel: AddSubTodoViewModel(todoManager: TodoAdderPreviewStub(), todoLoader: TodoAdderPreviewStub(), todo: Todo.createRootTodo(withName: "test", rootTaskNumber: 1)))
 }
 fileprivate final class TodoAdderPreviewStub:NSObject, TodoAdder,TodoLoader {
     func createNode(_ node: Todo!, completion: (([Todo]?) -> Void)!) {

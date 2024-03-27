@@ -11,13 +11,14 @@ import TodoShared
 final public class TodoListViewModel {
     typealias Observer<T> = (T) -> Void
     
-    public typealias TodoFacade = (TodoLoader & TodoDeleter & TodoStatusUpdater)
+    public typealias TodoFacade = (TodoDeleter & TodoStatusUpdater)
     private let todoManager: TodoFacade
+    private let todoLoader:TodoLoader
    
 
-    public init(todoManager: TodoFacade) {
+    public init(todoManager: TodoFacade,loader:TodoLoader) {
         self.todoManager = todoManager
-       
+        self.todoLoader = loader
     }
 
     var onReloadingCompleteStatusWhenSubTaskAdded:Observer<[Todo]>?
@@ -28,7 +29,7 @@ final public class TodoListViewModel {
 
 
     public func loadTodo() {
-        todoManager.load { [weak self] todos in
+        todoLoader.load { [weak self] todos in
             guard let todos = todos else{return}
             if todos.isEmpty{
                 self?.onLoad?([])
