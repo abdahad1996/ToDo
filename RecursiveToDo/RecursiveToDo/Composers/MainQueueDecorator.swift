@@ -52,7 +52,17 @@ class MainQueueDispatchDecoratorTodoLoader:NSObject, TodoLoader{
         }
     }
 }
-extension MainQueueDispatchDecorator:TodoDeleter,TodoStatusUpdater,TodoAdder,TodoNameUpdater {
+extension MainQueueDispatchDecorator:TodoMover,TodoDeleter,TodoStatusUpdater,TodoAdder,TodoNameUpdater {
+    func move(_ flattenArr: [Todo]!, completion: (([Todo]?) -> Void)!) {
+        decoratee.move(flattenArr) { [weak self] todos in
+        self?.dispatch {
+            completion(todos)
+        }
+    }
+    }
+    
+    
+    
     func updateName(_ name: String!, id: String!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateName(name, id: id) { [weak self] todos in
                         self?.dispatch {

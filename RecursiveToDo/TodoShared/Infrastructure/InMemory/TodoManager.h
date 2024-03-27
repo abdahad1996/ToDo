@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TodoShared/TodoAdder.h>
 
 @class Todo;
 

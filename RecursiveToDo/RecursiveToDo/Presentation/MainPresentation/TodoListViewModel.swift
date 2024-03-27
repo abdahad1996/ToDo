@@ -11,7 +11,7 @@ import TodoShared
 final public class TodoListViewModel {
     typealias Observer<T> = (T) -> Void
     
-    public typealias TodoFacade = (TodoDeleter & TodoStatusUpdater)
+    public typealias TodoFacade = (TodoDeleter & TodoStatusUpdater & TodoMover)
     private let todoManager: TodoFacade
     private let todoLoader:TodoLoader
    
@@ -41,6 +41,16 @@ final public class TodoListViewModel {
                 
             }
         }
+    }
+    
+    public func move(flatArr:[Todo]){
+        //call todo move
+//        todoManager.move
+        
+        
+        //call this inside completion
+//        let presentableTodos = PresentationHelper.flattenTodos(todos: todos)
+//         self?.onLoad?(presentableTodos)
     }
     
     public func loadSubTodo(copy todo:[Todo]) {

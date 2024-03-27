@@ -16,6 +16,9 @@
 #import <TodoShared/TodoDeleter.h>
 #import <TodoShared/TodoNameUpdater.h>
 #import <TodoShared/TodoStatusUpdater.h>
+#import <TodoShared/TodoMover.h>
+
+ 
 
 //implementations
 #import <TodoShared/TodoManager.h>
@@ -24,6 +27,7 @@
 #import <TodoShared/TodoManager+TodoDeleter.h>
 #import <TodoShared/TodoManager+TodoNameUpdater.h>
 #import <TodoShared/TodoManager+TodoStatusUpdater.h>
+#import <TodoShared/TodoManager+TodoMover.h>
 
 
 

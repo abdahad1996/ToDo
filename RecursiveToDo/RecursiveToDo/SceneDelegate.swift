@@ -102,7 +102,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let todoCacheDecorator = TodoCacheDecorator(decoratee: todoManager, cache: localLoader)
         let mainQueueDecorator = MainQueueDispatchDecorator(decoratee: todoCacheDecorator)
         
-        let viewModel = EditTodoViewModel(todoUpdater: todoCacheDecorator, todo: todo)
+        let viewModel = EditTodoViewModel(todoUpdater: mainQueueDecorator, todo: todo)
         let EditTodoView = EditTodoView(viewModel: viewModel,onCancelTapped: { [weak self] in
             self?.navigaitonController.navigationBar.isHidden = false
             self?.navigaitonController.popViewController(animated: true)

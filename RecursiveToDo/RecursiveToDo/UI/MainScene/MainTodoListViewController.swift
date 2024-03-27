@@ -208,8 +208,8 @@ extension MainTodoListViewController: UITableViewDropDelegate {
         }
         // If needed, you can get a reference to the cell being dragged using the index path
 
-        print("destination level \(todos[destinationIndexPath.row].level) == sourceIndexPath level \(todos[sourceIndexPath.row].level)")
-        print("\n destination parentId:\(todos[destinationIndexPath.row].parentId) == sourceIndexPath parentId \(todos[sourceIndexPath.row].parentId)")
+//        print("destination level \(todos[destinationIndexPath.row].level) == sourceIndexPath level \(todos[sourceIndexPath.row].level)")
+//        print("\n destination parentId:\(todos[destinationIndexPath.row].parentId) == sourceIndexPath parentId \(todos[sourceIndexPath.row].parentId)")
 
 //        if todos[destinationIndexPath.row].isRootTodo() == todos[sourceIndexPath.row].isRootTodo(){
 //            if session.localDragSession != nil {

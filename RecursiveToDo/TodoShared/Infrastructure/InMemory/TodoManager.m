@@ -7,6 +7,7 @@
 
 #import <TodoShared/TodoManager.h>
 #import <TodoShared/Todo.h>
+#import <TodoShared/TodoAdder.h>
 
 @implementation TodoManager
 
@@ -61,17 +62,17 @@
     [flattenedTodos addObjectsFromArray:[self flattenChildren:parent.children]];
     
     BOOL allSubtasksCompleted = YES;
-       
-       // Check if all subtasks are completed
-       for (Todo *child in flattenedTodos) {
-           if (!child.isCompleted) {
-               allSubtasksCompleted = NO;
-               break;
-           }
-       }
-       
-       // Update the parent's isCompleted property based on subtasks' completion status
-       parent.isCompleted = allSubtasksCompleted;
+    
+    // Check if all subtasks are completed
+    for (Todo *child in flattenedTodos) {
+        if (!child.isCompleted) {
+            allSubtasksCompleted = NO;
+            break;
+        }
+    }
+    
+    // Update the parent's isCompleted property based on subtasks' completion status
+    parent.isCompleted = allSubtasksCompleted;
     
 }
 
@@ -93,6 +94,8 @@
         [self deleteNodeAndChildren:child fromArray:todos];
     }
 }
+
+
 
 - (void)dealloc {
     // Release todos array

@@ -40,7 +40,15 @@ final class TodoCacheDecoratorLoader: NSObject,TodoLoader{
 }
 
 
-extension TodoCacheDecorator:TodoAdder,TodoStatusUpdater,TodoDeleter,TodoNameUpdater{
+extension TodoCacheDecorator:TodoMover,TodoAdder,TodoStatusUpdater,TodoDeleter,TodoNameUpdater{
+    func move(_ flattenArr: [Todo]!, completion: (([Todo]?) -> Void)!) {
+        decoratee.move(flattenArr)  {[weak self] todos in
+        self?.cache.saveIgnoringResult(todos ?? [])
+        completion(todos)
+    }
+    }
+    
+   
     func updateName(_ name: String!, id: String!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateName(name, id: id) { [weak self] todos in
             self?.cache.saveIgnoringResult(todos ?? [])
