@@ -13,16 +13,30 @@
 
 
 
-- (void)move:(NSArray<Todo *> *)flattenArr completion:(void (^)(NSArray<Todo *> *))completion { 
+- (void)move:(NSArray<Todo *> *)flattenArr completion:(void (^)(NSArray<Todo *> *))completion {
     NSArray<Todo *> *tree = [TodoManager makeTreeFromFlattenedTodos:flattenArr];
     //
     // update according to index
+    for (int i=0; i < tree.count; i++) {
+        tree[i].taskNumber = [NSString stringWithFormat:@"%d", i];
+        [self assignTaskNumberToChildren:tree[i]];
+    }
     
-//    self.todos = todo
+    self.todos = [tree mutableCopy];
     
     //call completion
+    completion(tree);
 }
 
+- (void)assignTaskNumberToChildren:(Todo *)todo {
+    if (todo.children.count > 0) {
+        for (int i=0; i < todo.children.count; i++) {
+            Todo *item = todo.children[i];
+            item.taskNumber = [NSString stringWithFormat:@"%@.%d", todo.taskNumber, i];
+            [self assignTaskNumberToChildren:item];
+        }
+    }
+}
 
 + (NSArray<Todo *> *)makeTreeFromFlattenedTodos:(NSArray<Todo *> *)flattenedTodos {
     NSMutableDictionary<NSString *, Todo *> *todoMap = [NSMutableDictionary dictionary]; // Map to store todos by their IDs
@@ -49,6 +63,5 @@
 
     return rootTodos;
 }
-
 
 @end

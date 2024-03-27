@@ -34,6 +34,9 @@ class MainTodoListViewController: UITableViewController {
             }
             
         }
+        viewModel?.onMove = { [weak self] todos in
+            self?.tableView.reloadData()
+        }
         
         viewModel?.onUpdateName = { [weak self] updatedTodo in
             self?.updateNameRow(with: updatedTodo)
@@ -159,9 +162,11 @@ class MainTodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
            print("\(sourceIndexPath.row) -> \(destinationIndexPath.row)")
         
-           let moveCell = self.todos[sourceIndexPath.row]
-           self.todos.remove(at: sourceIndexPath.row)
-           self.todos.insert(moveCell, at: destinationIndexPath.row)
+        let moveCell = self.todos[sourceIndexPath.row]
+        var todosCopy = self.todos.map{$0.copy() as! Todo}
+        todosCopy.remove(at: sourceIndexPath.row)
+        todosCopy.insert(moveCell, at: destinationIndexPath.row)
+//        self.viewModel?.move(flatArr: todosCopy)
    }
     
 }
@@ -206,40 +211,14 @@ extension MainTodoListViewController: UITableViewDropDelegate {
 
         guard let destinationIndexPath = destinationIndexPath, destinationIndexPath.row <= todos.count-1 else{ return UITableViewDropProposal(operation: .cancel)
         }
-        // If needed, you can get a reference to the cell being dragged using the index path
-
-//        print("destination level \(todos[destinationIndexPath.row].level) == sourceIndexPath level \(todos[sourceIndexPath.row].level)")
-//        print("\n destination parentId:\(todos[destinationIndexPath.row].parentId) == sourceIndexPath parentId \(todos[sourceIndexPath.row].parentId)")
-
-//        if todos[destinationIndexPath.row].isRootTodo() == todos[sourceIndexPath.row].isRootTodo(){
-//            if session.localDragSession != nil {
-//                return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-//            }
-//        }else{
+   
             //same level
         if (todos[destinationIndexPath.row].parentId != todos[sourceIndexPath.row].parentId) {
                     return UITableViewDropProposal(operation: .cancel)
         }
-//                if session.localDragSession != nil {
-//                    return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-//                }
-//            }
-//            else{
-//                return UITableViewDropProposal(operation: .cancel)
-//            }
-//            return UITableViewDropProposal(operation: .cancel)
-//        }
-
-         
-        
-        
-
-
-           // If needed, you can get a reference to the cell being dragged using the index path
 
         
         return UITableViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
-//        return UITableViewDropProposal(operation: .cancel)
 }
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) { }
 }

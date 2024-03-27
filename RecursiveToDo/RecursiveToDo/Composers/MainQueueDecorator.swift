@@ -9,7 +9,7 @@ import Foundation
 import TodoShared
 
 final class MainQueueDispatchDecorator:NSObject {
-   
+    
     private let decoratee: TodoCacheDecorator
     
     init(decoratee: TodoCacheDecorator) {
@@ -55,20 +55,20 @@ class MainQueueDispatchDecoratorTodoLoader:NSObject, TodoLoader{
 extension MainQueueDispatchDecorator:TodoMover,TodoDeleter,TodoStatusUpdater,TodoAdder,TodoNameUpdater {
     func move(_ flattenArr: [Todo]!, completion: (([Todo]?) -> Void)!) {
         decoratee.move(flattenArr) { [weak self] todos in
-        self?.dispatch {
-            completion(todos)
+            self?.dispatch {
+                completion(todos)
+            }
         }
-    }
     }
     
     
     
     func updateName(_ name: String!, id: String!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateName(name, id: id) { [weak self] todos in
-                        self?.dispatch {
-                            completion(todos)
-                        }
-                    }
+            self?.dispatch {
+                completion(todos)
+            }
+        }
     }
     
     
@@ -89,7 +89,7 @@ extension MainQueueDispatchDecorator:TodoMover,TodoDeleter,TodoStatusUpdater,Tod
         }
     }
     
-   
+    
     func updateStatus(_ node: Todo!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateStatus(node) { [weak self] todos in
             self?.dispatch {

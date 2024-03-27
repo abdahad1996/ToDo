@@ -30,9 +30,9 @@ final class TodoCacheDecoratorLoader: NSObject,TodoLoader{
     
     func load(completion: (([Todo]?) -> Void)!) {
         decoratee.load { [weak self] todos in
-           let todos = todos ?? []
+            let todos = todos ?? []
             if !todos.isEmpty{
-              self?.cache.saveIgnoringResult(todos)
+                self?.cache.saveIgnoringResult(todos)
             }
             completion(todos)
         }
@@ -43,12 +43,12 @@ final class TodoCacheDecoratorLoader: NSObject,TodoLoader{
 extension TodoCacheDecorator:TodoMover,TodoAdder,TodoStatusUpdater,TodoDeleter,TodoNameUpdater{
     func move(_ flattenArr: [Todo]!, completion: (([Todo]?) -> Void)!) {
         decoratee.move(flattenArr)  {[weak self] todos in
-        self?.cache.saveIgnoringResult(todos ?? [])
-        completion(todos)
-    }
+            self?.cache.saveIgnoringResult(todos ?? [])
+            completion(todos)
+        }
     }
     
-   
+    
     func updateName(_ name: String!, id: String!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateName(name, id: id) { [weak self] todos in
             self?.cache.saveIgnoringResult(todos ?? [])
@@ -65,7 +65,7 @@ extension TodoCacheDecorator:TodoMover,TodoAdder,TodoStatusUpdater,TodoDeleter,T
         }
     }
     
-   
+    
     
     func updateStatus(_ node: Todo!, completion: (([Todo]?) -> Void)!) {
         decoratee.updateStatus(node) { [weak self] todos in

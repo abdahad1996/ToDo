@@ -26,6 +26,7 @@ final public class TodoListViewModel {
     var onUpdateIsCompletedStatus: Observer<(copyTodos:[Todo],updatedTodos:[Todo])>?
     var onDeleteNode: Observer<[Todo]>?
     var onLoad: Observer<[Todo]>?
+    var onMove: Observer<[Todo]>?
 
 
     public func loadTodo() {
@@ -44,13 +45,13 @@ final public class TodoListViewModel {
     }
     
     public func move(flatArr:[Todo]){
-        //call todo move
-//        todoManager.move
-        
-        
-        //call this inside completion
-//        let presentableTodos = PresentationHelper.flattenTodos(todos: todos)
-//         self?.onLoad?(presentableTodos)
+ 
+        todoManager.move(flatArr) { [weak self] todos in
+            guard let todos = todos else{return}
+            let presentableTodos = PresentationHelper.flattenTodos(todos: todos)
+            self?.onMove?(presentableTodos)
+        }
+       
     }
     
     public func loadSubTodo(copy todo:[Todo]) {
