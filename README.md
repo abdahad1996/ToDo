@@ -8,7 +8,8 @@ This ia high level Diagram which illustrates how we can our business logic into 
 
 ## Todo shared Framework
 <img width="906" alt="Screenshot 2024-03-27 at 10 55 21 AM" src="https://github.com/abdahad1996/ToDo/assets/28492677/18b208f8-cf87-4076-8c13-83fd9134d3cb">
-- The domain consists of an entity and usecases 
+
+The domain consists of an entity and usecases 
 
 For the Feature/Domain module here the business logic or model for the feature is written which is completely agnostic of the presentation layer and the data layers(api/cache) . it consists of usecase protocols that our data layer will implement which in this case is our TodoManager
 
