@@ -1,5 +1,41 @@
 # ToDo
-Recursive Todo with TodoShared Objective C Framework
+Recursive Todo with TodoShared Objective C Framework.
+
+💡 My Motivation for this was based on creating single purpose decoupled components following Solid Principles. I think of the design in a critical and scalable way backed by tests which was very fun to do.
+
+### 1. Setup `ToDo` 
+- clone the project from the main branch and run the simulator.
+### 2. Validate the setup
+Test that everything is wired up correctly by running tests to validate that all tests pass.
+
+## Tools
+- ✅ Xcode 15.3
+- ✅ swift-driver version: 1.90.11.1 Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+
+## Frameworks
+- ✅ SwiftUI
+- ✅ Combine
+- ✅ UIKIT
+- ✅ No third party
+
+## Concepts
+- ✅ MVVM, Clean Architecture
+- ✅ Modular Design
+- ✅ SOLID Principles
+- ✅ TDD, Unit Testing
+- ✅ Dependency injection and Dependency Inversion
+- ✅ Composition Root, Decorator Patterns, Composite Pattern, Command Query Separation, Adapter Pattern
+
+
+## Features
+- ✅ Adding Root item(s)
+- ✅ Editing Root tasks(s)
+- ✅ User can add as many “Subtasks” as he/she want.
+- ✅ Editing “Subtask” items
+- ✅ User can recursively add as many “Subtasks” as he/she want.
+- ✅ Bonus – Rearranging Cells
+- ✅ Bonus – App persistence
+
 
 ## HIGH LEVEL DIAGRAM
 <img width="711" alt="Screenshot 2024-03-27 at 10 26 14 AM" src="https://github.com/abdahad1996/ToDo/assets/28492677/656885c6-e6cb-4e9c-ad47-29dcd98991ea">
