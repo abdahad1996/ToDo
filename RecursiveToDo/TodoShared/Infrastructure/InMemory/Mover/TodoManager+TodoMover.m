@@ -18,7 +18,7 @@
     //
     // update according to index
     for (int i=0; i < tree.count; i++) {
-        tree[i].taskNumber = [NSString stringWithFormat:@"%d", i];
+        tree[i].taskNumber = [NSString stringWithFormat:@"%d", i+1];
         [self assignTaskNumberToChildren:tree[i]];
     }
     
@@ -32,7 +32,7 @@
     if (todo.children.count > 0) {
         for (int i=0; i < todo.children.count; i++) {
             Todo *item = todo.children[i];
-            item.taskNumber = [NSString stringWithFormat:@"%@.%d", todo.taskNumber, i];
+            item.taskNumber = [NSString stringWithFormat:@"%@.%d", todo.taskNumber, i+1];
             [self assignTaskNumberToChildren:item];
         }
     }
@@ -44,6 +44,7 @@
 
     // Create a map of todos by their IDs
     for (Todo *todo in flattenedTodos) {
+        [todo.children removeAllObjects];
         todoMap[todo.id] = todo;
     }
 
@@ -54,7 +55,7 @@
         
         if (parent) {
             // If todo has a parent, add it to its parent's children array
-            [parent.children addObject:todo];
+             [parent.children addObject:todo];
         } else {
             // If todo doesn't have a parent, it's a root todo
             [rootTodos addObject:todo];

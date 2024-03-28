@@ -14,12 +14,13 @@ class MainTodoListViewController: UITableViewController {
     var addSubTask: (([Todo],Todo) -> Void)?
     var addTask: (() -> Void)?
     var editTask: ((Todo) -> Void)?
-    
+    var moveAfterDeletion:(([Todo]) -> Void)?
+
     var viewModel: TodoListViewModel? {
         didSet { bind() }
     }
     
-    private var todos = [Todo]()
+     var todos = [Todo]()
     
    
     
@@ -35,7 +36,10 @@ class MainTodoListViewController: UITableViewController {
             
         }
         viewModel?.onMove = { [weak self] todos in
+            self?.todos = todos
             self?.tableView.reloadData()
+//            self?.InsertTableRow(with: todos)
+           
         }
         
         viewModel?.onUpdateName = { [weak self] updatedTodo in
@@ -44,6 +48,8 @@ class MainTodoListViewController: UITableViewController {
         
         viewModel?.onDeleteNode = { [weak self] todos in
             self?.deleteTableRows(with: todos)
+            self?.moveAfterDeletion?(todos)
+            
         }
         //
         viewModel?.onUpdateIsCompletedStatus = { [weak self] todos in
@@ -80,7 +86,7 @@ class MainTodoListViewController: UITableViewController {
     
    
     
-    private func showEmptyView() {
+     func showEmptyView() {
         let emptyLabel = UILabel()
         emptyLabel.text = "No data available please add a task"
         emptyLabel.textAlignment = .center
@@ -130,8 +136,8 @@ class MainTodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action1 = UIContextualAction(style: .normal, title: "Add Subtask") { (action, view, completionHandler) in
-//            let copyTodo =  self.todos.map{$0.copy() as! Todo}
-            self.addSubTask?([],self.todos[indexPath.row])
+            let copyTodo =  self.todos.map{$0.copy() as! Todo}
+            self.addSubTask?(copyTodo,self.todos[indexPath.row])
             completionHandler(true)
         }
         action1.backgroundColor = .green
@@ -162,39 +168,19 @@ class MainTodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
            print("\(sourceIndexPath.row) -> \(destinationIndexPath.row)")
         
+        if sourceIndexPath.row == destinationIndexPath.row {
+            return
+        }
+        
         let moveCell = self.todos[sourceIndexPath.row]
-        var todosCopy = self.todos.map{$0.copy() as! Todo}
-        todosCopy.remove(at: sourceIndexPath.row)
-        todosCopy.insert(moveCell, at: destinationIndexPath.row)
-//        self.viewModel?.move(flatArr: todosCopy)
+       
+        self.todos.remove(at: sourceIndexPath.row)
+        self.todos.insert(moveCell, at: destinationIndexPath.row)
+        self.viewModel?.move(flatArr:  self.todos)
    }
     
 }
 
-
-extension Todo: NSItemProviderWriting {
-    
-    public static var writableTypeIdentifiersForItemProvider: [String] {
-        return ["Todo"]
-    }
-    
-    public func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Void) -> Progress? {
-        return nil
-    }
-    
-}
-// MARK:- UITableView UITableViewDragDelegate
-extension MainTodoListViewController: UITableViewDragDelegate {
-    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        // Set the local context to include the source index path
-        let dragItem = UIDragItem(itemProvider: NSItemProvider())
-        
-        let localContext = ["sourceIndexPath": indexPath]
-        dragItem.localObject = localContext
-        return [dragItem]
-    }
-}
- 
 // MARK:- UITableView UITableViewDropDelegate
 extension MainTodoListViewController: UITableViewDropDelegate {
     
@@ -222,77 +208,3 @@ extension MainTodoListViewController: UITableViewDropDelegate {
 }
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) { }
 }
-
-
-
-//MARK: Helper Functions
-extension MainTodoListViewController {
-    fileprivate func updateNameRow(with updatedTodo: Todo) {
-        // Reload or insert rows based on changeset
-        tableView.beginUpdates()
-        guard let index = self.todos.firstIndex(of: updatedTodo) else{return}
-        let indexPath = IndexPath(row: index, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
-        
-    }
-    
-    fileprivate func updateIsCompletedRows(copy: [Todo], updated: [Todo]) {
-        todos = updated
-        let changeset = Todo.indexesOfChangedIsCompleted(original: copy, updated: updated)
-        // Reload or insert rows based on changeset
-        tableView.beginUpdates()
-        
-        var indexPath = [IndexPath]()
-        changeset.forEach { index in
-            indexPath.append(IndexPath(row: index, section: 0))
-        }
-        tableView.reloadRows(at:indexPath, with: .automatic)
-        
-        tableView.endUpdates()
-    }
-    
-    fileprivate func deleteTableRows(with newTodos: [Todo]) {
-        
-        let oldTodos = todos
-        todos = newTodos
-        let changeset = Todo.indexesOfDeletedTodos(original: oldTodos, updated: todos)
-        
-        // Reload or insert rows based on changeset
-        tableView.beginUpdates()
-        
-        var indexPath = [IndexPath]()
-        changeset.forEach { index in
-            indexPath.append(IndexPath(row: index, section: 0))
-        }
-        
-        tableView.deleteRows(at:indexPath, with: .automatic)
-        
-        if todos.isEmpty{
-            self.showEmptyView()
-        }
-        tableView.endUpdates()
-    }
-    
-    
-    
-    
-    func InsertTableRow(with newTodos: [Todo]) {
-        let oldTodos = todos
-        todos = newTodos
-        
-        tableView.beginUpdates()
-        
-        let changeset = Todo.indexesOfAddedTodos(original: oldTodos,updated: newTodos)
-        var indexPath = [IndexPath]()
-        changeset.forEach { index in
-            indexPath.append(IndexPath(row: index, section: 0))
-        }
-        tableView.insertRows(at: indexPath, with: .automatic)
-        
-        
-        tableView.endUpdates()
-    }
-    
-}
-

@@ -38,13 +38,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         let primaryLoader = TodoCacheDecoratorLoader(decoratee: todoManager, cache:localLoader)
+        
         let fallBackLoader = localLoader
         let syncLoader = TodoLoaderSyncDecorator(decoratee: fallBackLoader, todoAdder: todoManager)
         
         let todoLoader = MainQueueDispatchDecoratorTodoLoader(decoratee:         TodoLoaderWithFallbackComposite(primary:primaryLoader, fallback: syncLoader))
         
         let viewModel = TodoListViewModel(todoManager:mainQueueDecorator, loader:todoLoader)
+         
         mainTodoListViewController.viewModel = viewModel
+        
+        
+        mainTodoListViewController.moveAfterDeletion = { [weak viewModel] todos in
+            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                viewModel?.move(flatArr: todos)
+            })
+        }
+        
+        
         
         mainTodoListViewController.addTask = { [weak self] in
             self?.makeAddTaskVC { [weak viewModel] in
@@ -59,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         mainTodoListViewController.addSubTask = { [weak self] copiedTodo,todo in
-            self?.makeSubTaskVC(todo: todo, completion: { [weak viewModel] _ in
+            self?.makeSubTaskVC(todo: todo, completion: { [weak viewModel,copiedTodo] _ in
                 viewModel?.loadTodo()
                 viewModel?.loadSubTodo(copy: copiedTodo)
             })
